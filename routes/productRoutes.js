@@ -9,5 +9,7 @@ const router = express.Router();
 // Get all products
 router.get('/', productController.getAllProducts);
 
+// Get product by ID
+router.get('/:id', productController.getProductById);
 // Export router
 module.exports = router;
