@@ -1,12 +1,13 @@
 const express = require('express');
 
-// Create an Express router
+// Import the controller
+const productController = require('../controllers/productController');
+
+// Create router
 const router = express.Router();
 
-// Test route
-router.get('/', (req, res) => {
-    res.send('Products route is working!');
-});
+// Get all products
+router.get('/', productController.getAllProducts);
 
-// Export the router
+// Export router
 module.exports = router;
