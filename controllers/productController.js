@@ -129,11 +129,56 @@ const deleteProduct = (req, res) => {
         message: "Product deleted successfully"
     });
 };
+
+// Search products by name
+const searchProducts = (req, res) => {
+    const name = req.query.name;
+
+    if (!name || name.trim() === "") {
+        return res.status(400).json({
+            message: "Search name is required"
+        });
+    }
+
+    const results = products.filter(p =>
+        p.name.toLowerCase().includes(name.trim().toLowerCase())
+    );
+
+    res.status(200).json(results);
+};
+
+// Get products by category
+const getProductsByCategory = (req, res) => {
+    const category = req.params.category;
+
+    const results = products.filter(p =>
+        p.category.toLowerCase() === category.toLowerCase()
+    );
+
+    res.status(200).json(results);
+};
+// Get products cheaper than a given price
+const getProductsByPrice = (req, res) => {
+    const price = Number(req.params.price);
+
+    if (!Number.isFinite(price) || price <= 0) {
+        return res.status(400).json({
+            message: "Invalid price"
+        });
+    }
+
+    const results = products.filter(p => p.price < price);
+
+    res.status(200).json(results);
+};
 // Export controller functions
 module.exports = {
     getAllProducts,
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    searchProducts,
+    getProductsByCategory,
+    getProductsByPrice
 };

@@ -12,6 +12,15 @@ router.get('/', productController.getAllProducts);
 // Create a new product
 router.post('/', productController.createProduct);
 
+// Search products by name
+router.get('/search', productController.searchProducts);
+
+// Get products by category
+router.get('/category/:category', productController.getProductsByCategory);
+
+// Get products cheaper than a given price
+router.get('/price/:price', productController.getProductsByPrice);
+
 // Update an existing product
 router.put('/:id', productController.updateProduct);
 
