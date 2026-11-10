@@ -106,10 +106,34 @@ const updateProduct = (req, res) => {
 
     res.status(200).json(product);
 };
+
+// Delete an existing product
+const deleteProduct = (req, res) => {
+    const id = Number(req.params.id);
+
+    // Find the product index
+    const productIndex = products.findIndex(p => p.id === id);
+
+    // Check if product exists
+    if (productIndex === -1) {
+        return res.status(404).json({
+            message: "Product not found"
+        });
+    }
+
+    // Remove the product from the array
+    products.splice(productIndex, 1);
+
+    // Return success message
+    res.status(200).json({
+        message: "Product deleted successfully"
+    });
+};
 // Export controller functions
 module.exports = {
     getAllProducts,
     getProductById,
     createProduct,
-    updateProduct
+    updateProduct,
+    deleteProduct
 };

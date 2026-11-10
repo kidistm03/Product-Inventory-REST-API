@@ -15,6 +15,9 @@ router.post('/', productController.createProduct);
 // Update an existing product
 router.put('/:id', productController.updateProduct);
 
+// Delete an existing product
+router.delete('/:id', productController.deleteProduct);
+
 // Get product by ID
 router.get('/:id', productController.getProductById);
 
