@@ -14,7 +14,11 @@ router.post('/', productController.createProduct);
 
 // Search products by name
 router.get('/search', productController.searchProducts);
+// Get low-stock products
+router.get('/low-stock', productController.getLowStockProducts);
 
+// Get total inventory value
+router.get('/value', productController.getTotalInventoryValue);
 // Get products by category
 router.get('/category/:category', productController.getProductsByCategory);
 

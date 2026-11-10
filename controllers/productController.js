@@ -171,6 +171,22 @@ const getProductsByPrice = (req, res) => {
 
     res.status(200).json(results);
 };
+// Get products with low stock
+const getLowStockProducts = (req, res) => {
+    const results = products.filter(p => p.quantity < 5);
+
+    res.status(200).json(results);
+};
+// Calculate total inventory value
+const getTotalInventoryValue = (req, res) => {
+    const totalValue = products.reduce((total, p) => {
+        return total + (p.price * p.quantity);
+    }, 0);
+
+    res.status(200).json({
+        totalValue: totalValue
+    });
+};
 // Export controller functions
 module.exports = {
     getAllProducts,
@@ -180,5 +196,7 @@ module.exports = {
     deleteProduct,
     searchProducts,
     getProductsByCategory,
-    getProductsByPrice
+    getProductsByPrice,
+    getLowStockProducts,
+    getTotalInventoryValue
 };
